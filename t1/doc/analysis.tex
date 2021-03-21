@@ -10,19 +10,20 @@ The circuit consists of multiple loops with various values of current, $i$ circu
 voltage sources, $v_a$ and $v_c$ driving their inputs. Applying the Mesh Method, we reach a system of 5 equations and unkowns, that we solved in Octave. Those equations can be written as
 
 \begin{equation}
-  Ri(t) + v_O(t) = v_I(t).
+  (v_2 - v_5)G_3 + (v_2 - v_1)G_1 + (v_2 - v_3)G_2 = 0.
   \label{eq:kvl}
 \end{equation}
 
 \begin{equation}
-  i(t) = C\frac{dv_O}{dt}.
+  (v_3 - v_2)G_2 - i_b = 0.
 \end{equation}
 
-Hence, Equation~(\ref{eq:kvl}) can be rewritten as
 \begin{equation}
-  RC\frac{dv_O}{dt} + v_O(t) = v_I.
+  i_b - i_d + (v_4 - v_5)G_5 = 0.
   \label{eq:kvl2}
 \end{equation}
+
+$i_b = K_b$
 
 Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
 superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
