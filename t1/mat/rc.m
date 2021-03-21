@@ -1,74 +1,64 @@
 close all
 clear all
 
-%%EXAMPLE SYMBOLIC COMPUTATIONS
 
 pkg load symbolic
 
-syms t
-syms R
-syms C
-syms vi(t)
-syms vo(t)
-syms i(t)
-
-i(t)=C*diff(vo,t)
-
-printf("\n\nKVL equation:\n");
-
-vi(t) = R*i(t)+vo(t)
-
-syms vo_n(t) %natural solution
-syms vo_f(t) %forced solution
-
-printf("\n\nSolution is of the form");
-
-v(t) = vo_n(t) + vo_f(t)
-
-printf("\n\nNatural solution:\n");
-syms A
-syms wn
-
-vi(t) = 0 %no excitation
-i_n(t) = C*diff(vo_n, t)
+R1 = 1.00196314014; 
+R2 = 2.082319235;
+R3 = 3.05798143645; 
+R4 = 4.10496355098; 
+R5 = 3.03658050119; 
+R6 = 2.00356698935;
+R7 = 1.0495200477;
+Va = 5.06400320393; 
+Id = 1.01960705059; 
+Kb = 7.0260450587; 
+Kc = 8.35916956066;
+G1=1/R1;
+G2=1/R2;
+G3=1/R3;
+G4=1/R4;
+G5=1/R5;
+G6=1/R6;
+G7=1/R7;
 
 
-printf("\n\n Natural solution is of the form");
-vo_n(t) = A*exp(wn*t)
+N=[0 -G1 G1+G2+G3 -G2 0 -G3 0 0 0 0 0; 0 0 -G2 G2 0 0 0 -1 0 0 0; G4 G1 -G1 0 0 -G4 0 0 1 0 0;0 0 0 0 G5 -G5 0 1 0 0 0; 0 0 0 0 0 0 0 1 0 -Kb 0; 0 0 1 0 0 -1 0 0 0 -1 0; 1 0 0 0 0 0 0 0 0 0 0; -1 1 0 0 0 0 0 0 0 0 0; 0 0 0 0 0 1 -1 0 0 0 -1; 0 0 0 0 0 0 0 0 -Kc 0 1; -1 0 0 0 0 0 1 0 R6+R7 0 0];
 
-R*i_n(t)+vo_n(t) == 0
-
-R*C*wn*vo_n(t)+vo_n(t) == 0
-
-R*C*wn+1==0
-
-solve(ans, wn)
+x=[0;0;0;Id;0;0;0;Va;0;0;0];
 
 
-%%EXAMPLE NUMERIC COMPUTATIONS
+M=[R1+R3+R4 R3 R4 0 0;R4 0 R4+R6+R7 0 -1;0 0 -Kc 0 1;R3 R3 0 -1 0;0 1 0 -Kb 0];
 
-R=1e3 %Ohm
-C=100e-9 %F
+z=[Va;0;0;0;0];
 
-f = 1000 %Hz
-w = 2*pi*f; %rad/s
+solnodes=N\x;
 
-%time axis: 0 to 10ms with 1us steps
-t=0:1e-6:10e-3; %s
+solmesh=M\z;
 
-Zc = 1/(j*w*C)
-Cgain = Zc/(R+Zc)
-Gain = abs(Cgain)
-Phase = angle(Cgain)
 
-vi = 1*cos(w*t);
-vo = Gain*cos(w*t+Phase);
+printf("\n\nNodal Method\n");
 
-hf = figure ();
-plot (t*1000, vi, "g");
-hold on;
-plot (t*1000, vo, "b");
+V0 = solnodes(1,1) %V
+V2 = solnodes(2,1) %V
+V3 = solnodes(3,1) %V
+V4 = solnodes(4,1) %V
+V5 = solnodes(6,1) %V
+V6 = solnodes(5,1) %V
+V9 = solnodes(7,1) %V
+Ib = solnodes(8,1) %A
+Ic = solnodes(9,1) %A
+Vb = solnodes(10,1) %V
+Vc = solnodes(11,1) %V
 
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
-print (hf, "forced.eps", "-depsc");
+
+printf("\n\nMesh Method\n");
+
+
+Ia = solmesh(1,1) %A
+Ib = solmesh(2,1) %A
+Ic = solmesh(3,1) %A
+Vb = solmesh(4,1) %V
+Vc = solmesh(5,1) %V
+
