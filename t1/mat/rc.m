@@ -3,6 +3,7 @@ clear all
 
 
 pkg load symbolic
+format long
 
 R1 = 1.00196314014; 
 R2 = 2.082319235;
