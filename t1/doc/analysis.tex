@@ -4,20 +4,16 @@
 In this section, the circuit shown in Figure~\ref{fig:rc} is analysed
 theoretically, in terms of the voltages and current intensities in the various branches and components of the circuit.
 
-\section{Time response}
+\section{______}
 
-The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The
-voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from
-the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a single
-equation for the single loop in the circuit can be written as
+The circuit consists of multiple loops with various values of current, $i$ circulating in each of the branches of the circuit. There are two
+voltage sources, $v_a$ and $v_c$ driving their inputs. Applying the Mesh Method, we reach a system of 5 equations and unkowns, that we solved in Octave. Those equations can be written as
 
 \begin{equation}
   Ri(t) + v_O(t) = v_I(t).
   \label{eq:kvl}
 \end{equation}
 
-Because $v_O$ is the voltage between capacitor C's plates, it is related to the
-current $i$ by
 \begin{equation}
   i(t) = C\frac{dv_O}{dt}.
 \end{equation}
@@ -57,5 +53,5 @@ illustrated in Figure~\ref{fig:forced}.
 \label{fig:forced}
 \end{figure}
 
-\section{Frequency response}
+\section{-------}
 
