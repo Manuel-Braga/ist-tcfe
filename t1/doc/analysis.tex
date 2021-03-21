@@ -23,7 +23,13 @@ voltage sources, $v_a$ and $v_c$ driving their inputs. Applying the Mesh Method,
   \label{eq:kvl2}
 \end{equation}
 
-$i_b = K_b$
+$i_b = K_b v_b$
+$v_2 -v_5 = v_6$
+$v_0 = 0$
+$v_1 - v_0 = v_a$
+$v_5 - v_6 = v_c$
+$v_c = K_c I_c$
+$v_6 - v_0 = -i_c(r_6 + r_7)$
 
 Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
 superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
