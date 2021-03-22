@@ -11,11 +11,11 @@ For convenience and coherence purposes, we chose to number the nodes of this cir
 The circuit consists of multiple loops with various values of current, $i$, circulating in each of the branches of the circuit. There are two
 voltage sources, $v_a$ and $v_c$, driving their inputs. Applying the Mesh Method, we reach a system of 5 equations and 5 unkowns, that was solved with the aid of the Octave math tools. In ordersystem into a matrix. Those equations are:
 
-begin{equation}
+\begin{equation}
   mesh a -> v_a - R_1*i_a - R_3*(i_a + i_b) - R_4*(i_a +i_c) = 0.
 \end{equation}
 
-begin{equation}
+\begin{equation}
   mesh c -> v_c - R_4*(i_a +i_c) - (R_6 +R_7)*i_c = 0.
 \end{equation}
 
