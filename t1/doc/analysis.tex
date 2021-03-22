@@ -13,6 +13,19 @@ The nodes and meshes used in the following calculations are identified in Figure
 \label{fig:circuit_analysis}
 \end{figure}
 
+The values of the circuit Resistors, independent voltage and current sources, transconductance and transresistance were obtained by running the t1_datagen.py file and are shown in Table~\ref{tab:data}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/data_tab}
+  \end{tabular}
+  \caption{Table with the values of the circuit Resistors (R), independent voltage (V) and current (I) sources, transconductance (Kb) and transresistance(Kc); currents are expressed in milliAmpere, voltages are expressed in Volts, resistances and transresistance are expressed in kiloOhm and transconductance is expressed in milliSiemens.}
+  \label{tab:data}
+\end{table}
+
 
 \subsection{Mesh Method}
 
@@ -41,7 +54,7 @@ The solution of this system of equations is presented in Table~\ref{tab:node}.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/mesh_tab}
   \end{tabular}
-  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method, solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method, solved using Octave; currents are expressed in Ampere and voltages are expressed in Volts.}
   \label{tab:node}
 \end{table}
 
@@ -84,7 +97,7 @@ The solution of this system of equations is presented in Table~\ref{tab:nodal}.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/nodal_tab}
   \end{tabular}
-  \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method, solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method, solved using Octave; currents are expressed in Ampere and voltages are expressed in Volts.}
   \label{tab:nodal}
 \end{table}
 
