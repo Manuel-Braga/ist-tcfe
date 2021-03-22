@@ -47,20 +47,37 @@ $(v_2 - v_3)G_1 + i_c +(v_1 - v_5)G_4 = 0$
 
 Equation~(\ref{eq:kvl2}) 
 
-\begin{equation}
-  v_O(t) = v_{On} + v_{Of}.
-  \label{eq:vo_sol}
-\end{equation}
-
-As learned in the theory classes the natural solution is of the form
-\begin{equation}
-  v_{On}(t) = Ae^{-\frac{t}{RC}},
-  \label{eq:vo_nat}
-\end{equation}
-where $A$ is an integration constant.
-
-The forced solution is of the form given in Equation~(\ref{eq:vo_for}) and is
+The solution is of the form given in Equation~(\ref{eq:vo_for}) and is
 illustrated in Figure~\ref{fig:forced}.
+
+
+
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/mesh_tab}
+  \end{tabular}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method; these values were obtained with Octave. }
+  \label{tab:op}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/nodal_tab}
+  \end{tabular}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method; these values were obtained with Octave.}
+  \label{tab:op}
+\end{table}
+
+
+
 
 \begin{equation}
   
