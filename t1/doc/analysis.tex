@@ -2,14 +2,22 @@
 \label{sec:analysis}
 
 In this section, the circuit shown in Figure~\ref{fig:rc} is analysed
-theoretically, in terms of the voltages and current intensities in the various branches and components of the circuit.
+theoretically, in terms of the voltages and current intensities of the various branches and components of the circuit.
 
 For convenience and coherence purposes, we chose to number the nodes of this circuit in the same manner that they will be numbered in the modified circuit used in the simulation. This means that nodes with the same number are in equivalent positions in the two circuits and explains why some numbers are skipped in this original circuit (the modified circuit has more nodes). In section ----- these modifications will be properly explained.
+The nodes and meshes used in the following calculations are identified in Figure~(\ref{fig:circuit_analysis}).
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.8\linewidth]{circuit_analysis.pdf}
+\caption{Circuit Nodes and Meshes Identification; nodes are identified by numbers and meshes are identified by capital letters; the circular arrows indicate de flow of the current that was arbitrarily chosen for each of the mesh's calculations.}
+\label{fig:circuit_analysis}
+\end{figure}
+
 
 \subsection{Mesh Method}
 
-The circuit consists of multiple loops with various values of current, $i$, circulating in each of the branches of the circuit. There are two
-voltage sources, $v_a$ and $v_c$, driving their inputs. Applying the Mesh Method, we reach a system of 5 equations and 5 unkowns, that was solved with the aid of the Octave math tools. In ordersystem into a matrix. Those equations are:
+The circuit consists of multiple loops with various values of current, $i$, circulating in each of its branches. There are two
+voltage sources, $v_a$ and $v_c$, driving their inputs. Applying the Mesh Method, which in this case consists of identifying the KVL equations for meshes A and C, as well as any other necessary additional equations, we reached a system of 5 equations and 5 unkowns, that was solved using the Octave math tools. Those equations are:
 
 \begin{equation}
   mesh a -> v_a - R_1*i_a - R_3*(i_a + i_b) - R_4*(i_a +i_c) = 0.
@@ -24,13 +32,24 @@ $v_c = K_c*i_c$
 $i_b = K_b*v_b$
 $v_b = R_3*(i_a + i_b)$
 
+The solution of this system of equations is presented in Table~(\ref{tab:node}). 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/mesh_tab}
+  \end{tabular}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method, solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
+  \label{tab:node}
+\end{table}
+
+
 \subsection{Nodal Method}
 
-Another way of solving the circuit is the Nodal Method, in which we have reached a system of 11 equations and 11 unknowns. After obtaining the equations, we repeated the procedure we took with the Mesh Method and solved the system with Octave software. The equations obtained by this method are:
+Another way of analysing the circuit is by applying the Nodal Method, which consists of identifying the FCL equations for the nodes not connected to a voltage source, as well as any other necessary additional equations. In this particular case, this means analysing nodes 3, 4 and 6, which led us to a system of 11 equations and 11 unknowns. After obtaining these equations, we repeated the previous procedure and solved the system with the Octave software. The equations obtained by applying this method are:
 
-\begin{equation}
-  node 1 -> (v_2 - v_3)*G_1 + i_c +(v_1 - v_5)*G_4 = 0
-\end{equation}
 
 \begin{equation}
   node 3 -> (v_3 - v_5)*G_3 + (v_3 - v_2)*G_1 + (v_3 - v_4)*G_2 = 0.
@@ -54,26 +73,9 @@ $v_5 - v_9 = v_c$
 $i_b = K_b*v_b$
 $v_c = K_c*I_c$
 $v_9 - v_1 = -i_c*(r_6 + r_7)$
+$node 1 -> (v_2 - v_3)*G_1 + i_c +(v_1 - v_5)*G_4 = 0$
 
-Equation~(\ref{eq:kvl2}) 
-
-The solution is of the form given in Equation~(\ref{eq:vo_for}) and is
-illustrated in Figure~\ref{fig:forced}.
-
-
-
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/mesh_tab}
-  \end{tabular}
-  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method, solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
-  \label{tab:op}
-\end{table}
+The solution of this system of equations is presented in Table~(\ref{tab:nodal}). 
 
 \begin{table}[h]
   \centering
@@ -83,19 +85,9 @@ illustrated in Figure~\ref{fig:forced}.
     \input{../mat/nodal_tab}
   \end{tabular}
   \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method, solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
-  \label{tab:op}
+  \label{tab:nodal}
 \end{table}
 
 
 
 
-\begin{equation}
-  
-  \label{eq:vo_for}
-\end{equation}
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{circuit_analysis.pdf}
-\caption{}
-\label{fig:forced}
-\end{figure}
