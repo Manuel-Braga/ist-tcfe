@@ -7,7 +7,7 @@
 % ----------------------------------------------------------------------
 % Define external packages, language, margins, fonts and new commands
 % ----------------------------------------------------------------------
-%\input{preamble} 
+%\input{preamble}
 \usepackage[utf8]{inputenc}   % <<<<< Linux
 \usepackage[english]{babel} % <<<<< English
 \usepackage{notoccite}
@@ -15,7 +15,8 @@
 \hyphenation{GTKWave}
 \usepackage{listings}
 \usepackage[all]{nowidow}
-
+\usepackage{float}
+\usepackage{indentfirst}
 \usepackage{graphicx}
 \graphicspath{{./}{../../figlib/}{../mat/}{../sim/}}
 \def\FontLn{% 16 pt normal
@@ -87,7 +88,7 @@
 %  Cover page
 % ----------------------------------------------------------------------
 \input{frontcover}
-
+\pagebreak
 % ----------------------------------------------------------------------
 % Dedication page (optional)
 % ----------------------------------------------------------------------
@@ -115,16 +116,17 @@
 % Table of contents
 %
 \tableofcontents
+\newpage
 
 % List of tables
 %\addcontentsline{toc}{section}{\listtablename}
 %\listoftables
-%\cleardoublepage 
+%\cleardoublepage
 
 % List of figures
 %\addcontentsline{toc}{section}{\listfigurename}
 %\listoffigures
-%\cleardoublepage 
+%\cleardoublepage
 
 % Set arabic numbering (1,2,...) after preface
 %
