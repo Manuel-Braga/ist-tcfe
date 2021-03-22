@@ -4,7 +4,7 @@
 In this section, the circuit shown in Figure~\ref{fig:rc} is analysed
 theoretically, in terms of the voltages and current intensities in the various branches and components of the circuit.
 
-
+For convenience and coherence purposes, we chose to number the nodes of this circuit in the same manner that they will be numbered in the modified circuit used in the simulation. This means that nodes with the same number are in equivalent positions in the two circuits and explains why some numbers are skipped in this original circuit (the modified circuit has more nodes). In section ----- these modifications will be properly explained.
 
 \subsection{______}
 
@@ -61,7 +61,7 @@ illustrated in Figure~\ref{fig:forced}.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/mesh_tab}
   \end{tabular}
-  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method; these values were obtained with Octave. }
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Mesh Method solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
   \label{tab:op}
 \end{table}
 
@@ -72,7 +72,7 @@ illustrated in Figure~\ref{fig:forced}.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/nodal_tab}
   \end{tabular}
-  \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method; these values were obtained with Octave.}
+  \caption{Table with the values of the unknowns from the system of equations obtained with the Nodal Method solved using Octave; currents are expressed in Ampere and voltages are expressed Volts.}
   \label{tab:op}
 \end{table}
 
