@@ -1,0 +1,24 @@
+* cir1
+.options savecurrents
+
+* Netlist
+
+.include circuit1.txt
+
+* Control Commands
+
+.control
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+exit
+.endc 
+.end
+
