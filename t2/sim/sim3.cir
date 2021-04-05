@@ -1,0 +1,37 @@
+* cir3
+.options savecurrents
+
+* Netlist
+
+.include circuit3.txt
+
+.include circuit_ic.txt
+
+
+* Control Commands
+
+.control
+
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 20e-3
+
+hardcopy natural.ps v(6)
+echo natural_FIG
+
+exit
+.endc 
+
+
