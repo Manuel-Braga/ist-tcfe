@@ -38,6 +38,6 @@ hold on
 plot (log10(freq) , (180*angle(Vc))/pi, "b");
 
 xlabel ("Frequecy, in logarithmic scale [Hz]");
-ylabel ("Phase [Degrees, º]");
+ylabel ("Phase [Degrees]");
 legend ('Vs','V6', 'Vc','Location','Northeast')
 print (hf, "phase.eps", "-depsc");
