@@ -14,11 +14,11 @@ freq=50;
 Vs = 230;
 
 %TRANSFORMER
-n = 10;
+n = 16;
 Vr = Vs/n;
 
 %VOLTAGE REGULATOR 
-num_diodes = 22;
+num_diodes = 18;
 von = 0.6;
 I_s = 1e-14;
 Vt = 0.025;

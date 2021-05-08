@@ -2,7 +2,7 @@
 *
 *
 .options savecurrents
-.param n = 1/10
+.param n = 1/16
 
 *IMPORT CIRCUIT
 .include t3.cir
@@ -46,7 +46,7 @@ print mean(v(5))
 echo "reg_END"
 
 echo "merit_TAB"
-print 1/ (515.8* ((maximum(v(5))-minimum(v(5))) + abs(mean(v(5)-12)) + 10e-6))
+print ((1/(maximum(v(5))-minimum(v(5)))) + (1/abs(mean(v(5)-12))))/508.8
 echo "merit_END"
 
 
