@@ -1,0 +1,91 @@
+\section{Results Comparison}
+\label{sec:comparison}
+
+As can be seen bellow, there are some differences between the NGSpice and Octave values for the average and ripple voltages of the envelope detector.
+
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/envelope_tab}
+  \end{tabular}
+  \caption{Octave envelope ripple and average voltages.}
+        \label{tab:envelopecomp}
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../sim/env_tab}
+  \end{tabular}
+  \caption{NGSpice envelope ripple and average voltages.}
+  \label{tab:envcomp}
+}
+\end{table}
+
+
+
+These differences relate to the fact that the diodes used are non-linear components. This means that any linear relations established between currents and voltages are approximations of the real circuit, which contributes to some discrepancies between results.
+
+Despite that, these discrepancies are expected, justified and small, which leads us to conclude that this model for the envelope detector is valid and yields a high precision.  
+
+In a similar manner, some differences between the NGSpice and Octave values for the average and ripple voltages of the voltage regulator were found, as can be seen bellow.
+
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/regulator_tab}
+  \end{tabular}
+  \caption{Octave regulator ripple and average voltages.}      
+        \label{tab:regulatorcomp}
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../sim/reg_tab}     
+  \end{tabular}
+  \caption{NGSpice regulator ripple and average voltages.}
+  \label{tab:regcomp}
+}
+\end{table}
+
+
+
+
+These discrepancies can be explained by the same aforementioned reasons, namely the non-linear behavior of the diodes used. However, we can conclude that the model used was successful, because it achieved the main goal of producing an output voltage of approximately 12V. 
+
+Finally, the cost and merit of this circuit can be found in Table~\ref{tab:merit}.
+
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+        \input{../sim/merit_tab}
+  \end{tabular}
+  \caption{Merit figure} 
+        \label{tab:merit}
+\end{table}     
+
+
+
+
+
+
+
+
+
+

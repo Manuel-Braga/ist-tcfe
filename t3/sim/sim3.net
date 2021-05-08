@@ -1,0 +1,63 @@
+* NGSPICE LAB 3 SIMULATION GROUP 46
+*
+*
+.options savecurrents
+.param n = 1/10
+
+*IMPORT CIRCUIT
+.include t3.cir
+
+
+*SIMULATION START
+
+
+.model DEFAULT D
+.op
+.end
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+
+
+echo "********************************************"
+echo  "TRANSIENT ANALYSIS"
+echo "********************************************"
+tran 0.0002 400m 200m
+
+echo "env_TAB"
+print maximum(v(4))-minimum(v(4))
+print mean(v(4))
+echo "env_END"
+
+echo "reg_TAB"
+print maximum(v(5))-minimum(v(5))
+print mean(v(5))
+echo "reg_END"
+
+echo "merit_TAB"
+print 1/ (515.8* ((maximum(v(5))-minimum(v(5))) + abs(mean(v(5)-12)) + 10e-6))
+echo "merit_END"
+
+
+hardcopy sim3a.ps {v(2)-v(3)} {v(4)} {v(5)}
+echo sim3a_FIG
+
+
+hardcopy sim3b.ps {v(4)-12} {v(5)-12}
+echo sim3b_FIG
+
+
+
+
+.endc
