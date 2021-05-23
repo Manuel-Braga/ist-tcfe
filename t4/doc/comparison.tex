@@ -1,0 +1,60 @@
+\section{Results Comparison}
+\label{sec:comparison}
+
+
+As can be seen in the last page of this report, there are some differences between the NGSpice and Octave values.
+
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	    \input{../mat/confirmation_data_tab}
+	    \input{../mat/opout_tab}
+  \end{tabular}
+  \caption{Octave Values.}                              
+        \label{tab:comp1a}      
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	   \input{../sim/OP_tab}
+  \end{tabular}
+  \caption{NGSpice Values.}                              
+  \label{tab:comp1b} 
+}
+\end{table}
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+     \input{../mat/sim_tab}
+  \end{tabular}
+  \caption{Octave Values.}
+        \label{tab:comp2a}
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	\input{../sim/simdata_tab}
+  \end{tabular}
+  \caption{NGSpice Values.}
+  \label{tab:comp2b}
+}
+\end{table}
+
+
+
+The first discrepancy between theoretical analysis and simulation is noticed in the nodal voltages. This can be due to the usage of an ideal transistor model in the theoreticall analysis, where it is assumed that VBEON is constant and equal to $0.7~V$. This is not the case in reality, as this value can oscilate (these oscilations are taken into account by the NGSPice transistor model).
+As for the incremental part of the analysis, the discrepancies found are even more significant. However, it should be noted that for this analysis rely on the operating point results, so the previously mentioned errors are carried in to this part of the analysis. Also, the approximation for high frequencies used for the capacitors (where they become short-circuits) may be a source of error, because we are in fact studying medium frequencies where the capacitors impedances may not be completely negliible.

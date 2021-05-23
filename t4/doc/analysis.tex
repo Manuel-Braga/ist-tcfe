@@ -1,16 +1,135 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
+The input for this circuit is a 10 mV sinusoidal signal and its associated parasite resistance. The circuit is then divided in two stages.
 
-\begin{equation}
-  Ri(t) + v_O(t) = v_I(t).
-  \label{eq:kvl}
-\end{equation}
+The gain stage, comprised primarily by an NPN transistor, which is responsible for amplifying the signal. However, this will lead to a high output impedance, which will not be suited for linking the circuit to the desired load. In this stage there is also an input coupling capacitor that acts as a block to the DC component of the current.
+
+The output stage is comprised primarily by a PNP transistor. This stage's goal is not to amplify the signal (in this stage we want to get to as close as possible to an unitary gain) but to lower the output impedance in order to allow the circuit to be linked to the desired load. Similarly to before, this stage has an output coupling capacitor, which blocks the coming DC voltage.
+
+Finally, a bias circuit powered by a 12V voltage source is overlapped with the main circuit, powering it.
+
+The relevant values used for this circuit are presented below in Table~\ref{tab:data}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/dataset_tab}
+  \end{tabular}
+  \caption{Final circuit parameters used for the analysis and simulation.}
+  \label{tab:data}
+\end{table}
+
+
+
+Before proceding with the calculations, it is necessary to verify if the transistor is operating in the forward active region. To do this, an operating point analysis of the circuit is made, whose results are as follows.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/confirmation_data_tab}
+  \end{tabular}
+	\caption{Operating point analysis results (Gain Stage).}
+  \label{tab:conf}
+\end{table}
+
+
+As can be seen in Table~\ref{tab:conf}, the voltage drop between the collector and the emitter (VCE) is greater than 0.7V, which is the standard voltage drop considered for the transistor to be in the forward active region (VBEON). This confirms that the transistor is indeed operating in the forward active region, as expected.
+
+After that, we can analyse the gain stage of this circuit. Using the transistor incremental model as a base for the calculations of the AC component of the circuit, we get the following results:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/gain_tab}
+  \end{tabular}
+  \caption{Gain Stage results.}
+  \label{tab:gain}
+\end{table}
+
+
+By analysing the values presented in Table~\ref{tab:gain}, we can see that despite having achieved an acceptable value for the gain, the magnitude of the output impedance is unnaceptably high. This shows the importance of implementing the next stage, the output stage.
+
+
+Below are the results obtained for the operating point analysis of the output stage of the circuit:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/opout_tab}
+  \end{tabular}
+	\caption{Operating point analysis results (Output Stage).}
+  \label{tab:opout}
+\end{table}
+
+By analysing the values presented in Table~\ref{tab:opout}, we can see three main differences when compared to the gain stage. The input impedance in the output stage is significantly higher than in the gain stage; the output impedance in the output stage is significantly lower than in the gain stage; and the gain is very close to being unitary, as desired. All this means that this circuit experiences little signal loss and that it is suited for the usual 8 Ohm load (for example of speakers).
+
+The values for the output stage calculated using the incremental model are presented in Table~\ref{tab:opstage}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/opstage_tab}
+  \end{tabular}
+  \caption{Output Stage results.}
+  \label{tab:opstage}
+\end{table}
+
+
+
+Finally, the relevant values calculated for the whole circuit are presented in Table~\ref{tab:total}.
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/total_tab}
+  \end{tabular}
+  \caption{Relevant circuit gain results.}
+  \label{tab:total}
+\end{table}
+
+A frequency response of the circuit, both in terms of the gain and phase, was conducted and produced the following plots: 
+
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{forced.eps}
-\caption{Forced sinusoidal response.}
-\label{fig:forced}
+\includegraphics[width=0.8\linewidth]{Gain.eps}
+	\caption{Output voltage gain (frequency response).}
+\label{fig:gain}
 \end{figure}
 
 
+\begin{figure}[h] \centering
+\includegraphics[width=0.8\linewidth]{Phase.eps}
+	\caption{Output voltage phase difference (frequency response).}
+\label{fig:phase}
+\end{figure}
+
+
+For medium frequencies of the bandwidth, the following gain was obtained:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/sim_tab}
+  \end{tabular}
+  \caption{Medium frequencies gain and lower cut-off frequency of the output signal.}
+  \label{tab:simtab}
+\end{table}
+
+
+In Table~\ref{tab:simtab}, we can also see the lower cut-off frequency, which was obtained by finding the point with a 3 decibel drop from the maximum gain in Figure~\ref{fig:gain}. This frequency is very close to 20Hz, which is good, as it is one of the lowest frequencies that the human ear can hear.

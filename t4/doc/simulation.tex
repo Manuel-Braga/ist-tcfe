@@ -1,32 +1,108 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
+One of the key objectives of this simiulation is to optimize the values of the gain, the cut-off frequencies (lower and upper) and bandwidth. This optimization is measured by a figure of merit (M) that is given by Equation~\ref{eqn:merit}.
+
+\begin{equation}
+\label{eqn:merit}
+M=\frac{Gain*Bandwidth}{Cost*LowerCutOffFrequency}
+\end{equation}
+
+The simulation process starts by modifiyng the original circuit provided for this assignment, tweaking the values in order to improve the figure of merit. This is done by trial and error.
+
+After that, an operating point analysis is made to determine the currents and nodal voltages, which allow us to check if the transistors are operating in the forward active region.
+The operating point analysis results are presented in Table~\ref{tab:opsim}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+	  {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../sim/OP_tab}
+  \end{tabular}
+  \caption{Operating point analysis results for the amplifier circuit. Values are expressed in $Volt$.}
+  \label{tab:opsim}
+\end{table}
+
+
+As we can see, because $V_{collector} > V_{base} > V_{emitter}$, we can confirm that the voltage drops are occuring from the collector to the base and from the base to the emitter, which means that the npn transistor is in fact operating in the forward active region, as desired.
+Similarly, in th pnp transistor, with the collector node acting as ground, the voltage drop should be from the emitter to the collector. Because $V_{emitter2} > V_{collector}$, we can confirm that this transistor is also operating in the forward active region.
+
+It should be noted that the voltage in nodes $in$ and $in2$ is 0V because the source does not provide a DC component, which is the only componen taken into consideration in an operating point analysis.
+
+
+In the frequency domain, the .meas function is used to determine the output gain, as well as the values for the lower and upper cut-off frequencies of the output voltage signal and the bandwidth. The input impedance was measured as seen by the source, while the output impedance was measured as seen by the load (a dummy test source was used for this purpose). These values are presented in Table~\ref{tab:simdata}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+	\input{../sim/simdata_tab}
+	  \input{../sim/outputimp_tab}
+  \end{tabular}
+  \caption{Gain, bandwidth and impedances of the whole circuit.}
+  \label{tab:simdata}
+\end{table}
+
+
+
+These results led the group to understand many of the theoretical ideas presented in class, namely the effects of the coupling and bypass capacitors and of resistor $R_{C1}$.
+
+While tweaking the values of the circuit parameters, we realised that the coupling capacitors not only blocked the DC signals but also impacted the lower cut-off frequency directly, because of the blockage of some low frequencies.
+
+The capacitor $C_b$ is important to counter-act the negative effect of resistor $R_{E1}$ on the gain. This happens because the capacitor acts as an open-circuit for low frequencies (DC) and as a short-circuit for the higher frequencies (AC). Thus, we can implement $R_{E1}$ to reduce the effects of temperature, without compromising the gain.
+
+The effect of $R_{C1}$ is more direct, as the current $I_{C1}$ influences the value of $gm$, which is crucial for the increase in gain.
+
+
+In the following Figures~\ref{fig:gstage}~and~\ref{fig:out} we can see the gain of the circuit.
+
+
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/stage.pdf}
+	\caption{Gain Stage output gain (frequency response).}
+\label{fig:gstage}
+\end{figure}
+
+
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/output.pdf}
+	\caption{Load output gain (frequency response).}
+\label{fig:out}
+\end{figure}
+
+
+
+In Figure~\ref{fig:gstage} the gain out of the gain stage is presented and in Figure~\ref{fig:out} the final gain of the circuit is shown.
+
+In Figure~\ref{fig:out} the stabilization and gain of the output signal is particularly evident, as well as its band-pass filter behavior.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/comp.pdf}
+        \caption{Load output gain (frequency response).}
+\label{fig:comp}
+\end{figure}
+
+
+
+In Figure~\ref{fig:comp}, we can analyse the evolution of our AC signal. The output voltage does not present a DC component, as desired. There is a symmetric phase when compared to the input source (the signals are inverted), but this is not a problem as the human ear deos not distinguish this symmetry in phase. Beyond that, we can also see a clear increase in amplitude that is approximately $0.55~V$, which is very significant when compared to the $10~mV$ input. This means that the objective of amplifying the signal was achieved, as the increased output is more than 50 times as large as the given input.
+In table~\ref{tab:merit}, the figure of merit is presented. Despite a high value for the cost, the results for the bandwidth counter-act that effect, making the figure of merit very acceptable. Thus, we believe that this is a good tradeoff between cost and quality, as we were able to achieve a bandwidth ranging from 20 Hz to the order of magnitude of MHz.
+
 
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/costmerit_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op}
+  \caption{Cost and Merit.}
+  \label{tab:merit}
 \end{table}
-
-
-
-
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{trans.pdf}
-\caption{Transient output voltage}
-\label{fig:trans}
-\end{figure}
-
 
 
 
