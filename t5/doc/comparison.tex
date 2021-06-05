@@ -1,0 +1,59 @@
+\section{Results Comparison}
+\label{sec:comparison}
+
+
+As can be seen in the last page of this report, there are some differences between the NGSpice and Octave values.
+
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	    \input{../mat/confirmation_data_tab}
+	    \input{../mat/opout_tab}
+  \end{tabular}
+  \caption{Octave Values.}                              
+        \label{tab:comp1a}      
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	   \input{../sim/OP_tab}
+  \end{tabular}
+  \caption{NGSpice Values.}                              
+  \label{tab:comp1b} 
+}
+\end{table}
+
+\begin{table}[h]
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+     \input{../mat/sim_tab}
+  \end{tabular}
+  \caption{Octave Values.}
+        \label{tab:comp2a}
+}
+\hfill
+        \parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
+	\input{../sim/simdata_tab}
+  \end{tabular}
+  \caption{NGSpice Values.}
+  \label{tab:comp2b}
+}
+\end{table}
+
+
+
+
