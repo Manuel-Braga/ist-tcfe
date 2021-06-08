@@ -1,4 +1,3 @@
-
 % ----------------------------------------------------------------------
 %  Set the document class
 % ----------------------------------------------------------------------
@@ -15,12 +14,12 @@
 \hyphenation{GTKWave}
 \usepackage{listings}
 \usepackage[all]{nowidow}
-\usepackage{mathtools}
-
-
+\usepackage{siunitx}
+%blind text
+\usepackage{lipsum}
 
 \usepackage{graphicx}
-\graphicspath{{./}{../../figlib/}{../mat/}{../sim/}}
+\graphicspath{ {./} {../../figlib/} }
 \def\FontLn{% 16 pt normal
   \usefont{T1}{phv}{m}{n}\fontsize{16pt}{16pt}\selectfont}
 \def\FontLb{% 16 pt bold
@@ -72,9 +71,8 @@
 \usepackage[numbers,sort&compress]{natbib} % <<<<< References in numbered list [1],[2],...
 \usepackage{subcaption} 
 \usepackage{mdframed}
-
 \usepackage{amsmath}
-
+\usepackage{amssymb}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Begin Document                                                   %
@@ -120,7 +118,6 @@
 
 % Table of contents
 %
-\newpage
 \tableofcontents
 
 % List of tables
@@ -141,14 +138,12 @@
 % ----------------------------------------------------------------------
 %  Body
 % ----------------------------------------------------------------------
-\newpage
+\pagebreak
 \input{intro}
 
 \input{analysis}
-\newpage
+
 \input{simulation}
-\newpage
-\input{comparison}
 
 \input{conclusion}
 %\cleardoublepage

@@ -1,119 +1,84 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
+\subsection{Circuit frequency response}
+With equations (1) and (2), both cut-off frequencies for the band pass circuit were determined. With the same definition determine the central frequency was determined, which is meant to be 1 kHz.
 
 
+\begin{equation}
+w_L=\frac{1}{R_{1}C_{1}}
+\end{equation}
+\begin{equation}
+w_H=\frac{1}{R_{2}C_{2}}
+\end{equation}
+\begin{equation}
+w_O=\sqrt{w_{H}w_{L}}
+\end{equation}
 
-\begin{table}[h]
+\begin{table}[h!]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/dataset_tab}
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{frequency_tab} 
   \end{tabular}
-  \caption{}
+  \caption{Cut-off frequencies and central frequency.}
   \label{tab:data}
 \end{table}
 
+The central frequency result represents a 2.31\% relative error, which is an acceptable result, that we hope to replicate in the simulation.
 
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/confirmation_data_tab}
-  \end{tabular}
-	\caption{}
-  \label{tab:conf}
-\end{table}
-
-
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/gain_tab}
-  \end{tabular}
-  \caption{}
-  \label{tab:gain}
-\end{table}
-
-
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/opout_tab}
-  \end{tabular}
-	\caption{}
-  \label{tab:opout}
-\end{table}
-
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/opstage_tab}
-  \end{tabular}
-  \caption{}
-  \label{tab:opstage}
-\end{table}
-
-
-
-
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/total_tab}
-  \end{tabular}
-	\caption{}
-  \label{tab:total}
-\end{table}
-
- 
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{Gain.eps}
-	\caption{}
-\label{fig:gain}
+\begin{figure}[h!] \centering
+\includegraphics[width=0.6\linewidth]{gain.eps}
+\caption{Voltage gain frequency response.}
+\label{fig:gainfreq}
 \end{figure}
 
+As wanted, the plot has the trait of a narrower band-pass filter, with its top gain arriving in the 1 kHz neighbourhood, and the gain itself is on the 40 dB as pretended, as can be seen in Figure 2.
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{Phase.eps}
-	\caption{}
-\label{fig:phase}
+\begin{figure}[h!] \centering
+\includegraphics[width=0.6\linewidth]{phase.eps}
+\caption{Voltage phase frequency response.}
+\label{fig:gainfreq}
 \end{figure}
 
+The phase drops from 90 degrees to -90 degrees, which is cause of the 2 poles of the transfer function (which we will present in the next subsection), one pole introduced by the high-pass and the other pole introduced by the low pass. Each pole causes a 90 degree drop, 45º the decade before and 45º the decade after. At the central frequency, the phase is zero, which means the output voltage is in phase with the input voltage. This can be seen in Figure 3.
 
+\pagebreak
 
+\subsection{Central frequency results}
 
-\begin{table}[h]
+Both the input and output impedances for the amplifier, as well as the circuit gain were computed for a frequency of 1kHz. The theorethical figure of merit was also theoretically calculated based on the gotten results. 
+
+Regarding the gain value for the whole circuit, the three individual gains from each stage of the circuit were multiplied. Assuming an ideal circuit without loss of signal or charge effect between stages, these individual gains can be obtained with the following equations: 
+
+\begin{equation}
+High\,Pass\,Gain=|\frac{R_{1}C_{1}jw_{O}}{1+R_{1}C_{1}jw_{O}}|
+\end{equation}
+\begin{equation}
+Amplifier\,Gain=1+\frac{R_{4}}{R_{3}}
+\end{equation}
+\begin{equation}
+Low\,Pass\,Gain=|\frac{1}{1+R_{2}C_{2}jw_{O}}|
+\end{equation}
+
+By applying the incremental model to the circuit, with the OP-AMP's input impedance being infinite and its output impedance being zero (as studied in class), the following equations for the input and output impedances of the circuit were deduced:
+
+\begin{equation}
+Z_i = R_1 + \frac{1}{jw_{O}C_{1}}
+\end{equation}
+\begin{equation}
+Z_o = \frac{R_2}{1+jw_OR_2C_2}
+\end{equation}
+
+\begin{table}[h!]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/sim_tab}
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{theo_tab} 
   \end{tabular}
-  \caption{}
-  \label{tab:simtab}
+  \caption{Gain, input and output impedances at the central frequency.}
+  \label{tab:data}
 \end{table}
 
-
-
+By analysing Table~\ref{tab:data}, we can see that the gain obtained for 1kHz is very close to the gain for the calculated central frequency. This confirms that the 1kHz frequency is well within the bandpass region. A relative error of 0.643\% was obtained for the gain at central frequency, which is expected to be 100, making this a good theoretical result. Regarding the input impedance, its value is relatively high, which is a desirable result, as, depending on the resistance of the input, most of the input voltage will flow to the OP-AMP as pretended. However, the output impedance value is larger than desired. This means that this circuit is not suited for loads with very low resistance values. Despite that, with the components available, we believe that this was an acceptable result. 

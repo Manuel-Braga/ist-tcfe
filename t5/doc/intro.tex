@@ -1,15 +1,28 @@
 \section{Introduction}
 \label{sec:introduction}
 % state the learning objective 
+The objective of this laboratory assignment is to model and simulate a circuit of a bandpass filter using OP-AMP. This circuit can be observed in Figure~\ref{fig:cir}, and has as specifications a central frequency of 1000Hz and a gain at central frequency of 40dB.
+ The components utilized in our circuit are a 741 OPAMP, connected to two resistors, which creates a non-inverting amplifier, and a combination of capacitors and resistors which are the responsibles of the filtering.
 
-
-The objective of this laboratory assignment is to model and simulate an. This circuit is divided into , as can be seen in Figure~\ref{fig:cir}.
-
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is presented using Octave. In Section~\ref{sec:simulation}, the circuit is analysed by simulation using NGSpice. In Section~\ref{sec:comparison}, the theoretical and simulated results are compared and discussed. The conclusions of this study are outlined in
-Section~\ref{sec:conclusion}.
+ The signal, firstly, goes through a high pass filter (since the rest of the circuit is connected to the terminals of the resistor) where a capacitor blocks unwanted DC current and filters out lower frequencies. Then, in the non-inverting amplifier, the signal goes through a combination of the 741 OPAMP and some resistors. At this point, the output signal is "in-phase" with the input signal. Feedback control of the non-inverting OPAMP is achieved by applying a small part of the output voltage back to the inverting terminal via R3-R4 voltage divider network. Lastly, the signal is subjected to a low pass filtering, where we need two DC supply voltage sources overlapped with the main circuit, in order to power the transistors, inside the OPAMP.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.75\linewidth]{./t4cir.pdf}
-\caption{Audio Amplifier Circuit.}
-\label{fig:cir}
+\includegraphics[width=0.9\linewidth]{circuit.pdf}
+\caption{Bandpass filter circuit using OP-AMP}
+	\label{fig:cir}
 \end{figure}
+
+In order to analyse this circuit theoretically,the transfer function for each stage was computed so that the overall transfer function could be obtained. Using the incremental model, the input and output impedances of the overall circuit were determined.
+That being said, in Section 2 the theoretical models and calculations used to determine the transfer function are presented and, consequently, the frequency response of the circuit. In Section 3 the results obtained in the simulation are shown. In Section 4 the two sets of results are compared, looking for possible discrepancies and our conclusions are laid out.
+In Table 1, there are the numeric values of the components used:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{initdata_tab} 
+  \end{tabular}
+  \caption{Values of components used in our analysis and simulation.}
+  \label{tab:data}
+\end{table}

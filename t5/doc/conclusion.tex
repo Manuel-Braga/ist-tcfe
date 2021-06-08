@@ -1,7 +1,30 @@
 \section{Conclusion}
 \label{sec:conclusion}
+\par
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{c c c}
+    \hline    
+    {\bf -} & {\bf Theorethical Value} & {\bf Simulation value}\\ \hline
+    \input{comp.tex} 
+  \end{tabular}
+  \caption{Theoretical and simulated results comparison}
+  \label{tab:comp}
+\end{table}
+
+In this laboratory assignment, we managed to build a bandpass filter circuit which is represented in Figure 1, using an OP-AMP. The first stage of the analysis was to determine the circuit's frequency response by computing its transfer function.
+
+In this circuit, there are 2 separate transistors inside the OP-AMP. This means that the theoretical model used in the circuit analysis can differ significantly because of the non linear behavior of the transistors. Beyond that, the NGSpice OP-AMP model also contributes to some discrepancies in results, for example due to the various capacitors and diodes that make it up, which were not considered in the theoretical analysis.
+Another factor that probably contributed to some discrepancies was the parasitic capacitance of the transistors, which was also not taken into account in the theoretical analysis. 
+
+Despite all of this, almost every set of data theoreticaly predicted was matched in the simulation. The exception to this was the lower and upper cut-off frequency values, which in turn resulted in a deviation of the central frequency value.   
+Despite being approximately centered around 1 kHz, the bandwidth was much larger than what the theoretical results indicated. 
+
+In spite of these discrepancies in the bandwidth, we believe that the most important results, namely the central frequency, were acceptable. 
+Finally, this assignment allowed us to design a bandpass filter using an OP-AMP, operating with a central frequency close to 1 kHz, and a gain of 40 dB, as pretended. Despite the high cost of the components used for the circuit, the results achieved were precise. Thus, we consider that we met the goals of this assignment successfully.
 
 
-Despite the differences exposed in Section~\ref{sec:comparison}, the results obtained for both 
-Therefore, we believe that the objective of this assignment was achieved.
+
+
+
 

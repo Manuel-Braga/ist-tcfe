@@ -1,84 +1,64 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
+Because the input voltage source in the circuit is sinusoidal, there is a variation in time in the voltage and current values of the various components. Therefore, it is important to analyse how they evolve in time and to picture the transformation of the AC input voltage source from the input to the output of this circuit. A transient analysis will be made, which helps in measuring the input and output impedance. The frequency response analysis will be made as well, so that the gain and central frequency of our output amplified sinusoidal signal can be determined.
 
+\subsection{Frequency response and impedances}
 
-
-\begin{equation}
-\label{eqn:merit}
-M=\frac{Gain*Bandwidth}{Cost*LowerCutOffFrequency}
-\end{equation}
-
-
+The input and output impedances of the circuit are measured, the firstseen from the source's perspective, and the later seen from the output's perspective. With the frequency response, the voltage gain in the output and the lower and upper cut-off frequencies are measured. Using the same equation from the theoretical analysis the central frequency was determined, then extracting the output gain for such frequency. In Table~\ref{tab:main}, the results of the calculations are presented. In figures~\ref{fig:gainstage}and~\ref{fig:outputstage} the frequency response for our output's gain and phase, respectively, can be seen. In these figures a slightly narrow band-pass filter can be noticed. Regarding the phase plot, a full circle phase drop is noticed, until it reaches the $\ang{90}$ back again, unlike what happened in the theoretical analysis, in which the phase drops from $\ang{90}$ to $\ang{-90}$, where it stabilizes. This difference is the cause of the aproximation that is utilized to study the OP-AMP behaviour in the theoretical section. It was considered the OP-AMP did not introduce any phase difference in its output compared to its input, which is, in reality, not true. The transfer function in this sector actually presents 2 poles, which causes a double phase drop of $\ang{90}$ ($\ang{45}$ the decade before and $\ang{45}$ the decade after) each, which then means the phase actually drops $\ang{180}$ due to the OP-AMP, hence stabilizing not in $\ang{-90}$, but in $\ang{90}$ ($\ang{-270}$).
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-	  {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../sim/OP_tab}
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{data_tab}
+    \input{outimp_tab}     
   \end{tabular}
-  \caption{}
-  \label{tab:opsim}
+  \caption{Center frequency, output gain and input and output impedances of the OP-AMP band-pass filter.}
+  \label{tab:main}
 \end{table}
 
+The input impedance value is quite high. Therefore, depending on the input signal's inner resistance, it allows the majority of the input voltage to flow towards the OP-AMP. Consequently, the output impedance value is also quite high, which is not desirable. Therefore, for loads with low resistance values, most of the voltage will be consumed by the circuit's output impedance, which goes against what it was supposed to do. This band-pass filter is, then, more suited for loads with bigger values of resistance. 
+Relatively to the obtained values for the central frequency and the gain for such frequency, there were slight deviations from the targeted values. A relative error of 1.863\% was obtained for the central frequency value, and 0.264\% for the output voltage gain, which we are good results.
 
-
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-	\input{../sim/simdata_tab}
-	  \input{../sim/outputimp_tab}
-  \end{tabular}
-  \caption{}
-  \label{tab:simdata}
-\end{table}
-
-
-
-
-
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{../sim/stage.pdf}
-	\caption{}
-\label{fig:gstage}
+\begin{figure}[h!] \centering
+\includegraphics[width=0.6\linewidth]{vo1f.pdf}
+\caption{Output voltage gain.}
+\label{fig:gainstage}
 \end{figure}
 
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{../sim/output.pdf}
-	\caption{}
-\label{fig:out}
+\begin{figure}[h!] \centering
+\includegraphics[width=0.6\linewidth]{vo1p.pdf}
+\caption{Output voltage phase difference.}
+\label{fig:outputstage}
 \end{figure}
 
+\pagebreak
+\subsection{Final result and merit}
+The input and output signals can be compared, as seen in Figure~\ref{fig:comp}. The output voltage doesn't show a DC component, as expected. The evolution from the starting 10mV to the final (approximately) 1V amplitude is a direct result of the desired 40 dB gain, which corresponds to about 100 times the initial amplitude of the signal. In the first few milisseconds, a small variation in the output sinusoidal wave is seen, due to a small transient regime.
 
 
-
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{../sim/comp.pdf}
-        \caption{}
+\begin{figure}[h!] \centering
+\includegraphics[width=0.5\linewidth]{vo1.pdf}
+\caption{Comparison between the input and the output sinusoidal signals.}
 \label{fig:comp}
 \end{figure}
 
+\pagebreak
 
+The cost and merit of our circuit are presented in Table~\ref{tab:merit}. As previously explained, the simulated central frequency and gain  were very close to the desired values, which results in very low relative errors, which imply small deviations. The overall cost of the circuit is high; however, it is primarily affected by the high cost of the OP-AMP subcircuit, which was unchangeable. The flipside of this was that using higher cost components in the rest of the circuit had less of an impact in the overall cost of the circuit as a whole. Because of this, the three $100 k\Omega$ resistors available in the amplification stage were utilized, which contributed to a close to perfect gain for the central frequency, without compromising the figure of merit. This figure is, in absolute terms, a very low number, however, we believe that, based on the restraints of the merit formula itself, it is an acceptable value.
+\pagebreak
 
-
-\begin{table}[h]
+\par
+\begin{table}[h!]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../sim/costmerit_tab}
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{merit_tab} 
   \end{tabular}
-  \caption{Cost and Merit.}
+  \caption{Cost and merit.}
   \label{tab:merit}
 \end{table}
 
-
-
+\pagebreak

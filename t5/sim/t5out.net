@@ -45,21 +45,24 @@
 .model qx NPN(Is=800.0E-18 Bf=93.75)
 .ends
 
-
-
 .options savecurrents
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vin out 0 0 ac 1.0 sin(0 1 1k)
 
-X1 0 inv_in vcc vee out uA741
+X1 non_inv inv_in vcc vee outp uA741
 
-R1 in inv_in 1000
-R2 inv_in out 10000
+R1 non_inv 0 1000
+C1 0 non_inv 220n
 
-* load
-RL out 0 8
+R3 inv_in 0 1000
+R4 outp x 100000
+R41 x inv_in 100000
+R42 x inv_in 100000
+
+R2 outp out 1000
+C2 out 0 110n
 
 .op
 .end
@@ -70,19 +73,24 @@ print all
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
-
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out)
 
-*input impedance in kohm
-*print v(in)[40]/R1[i]/1000
+*output impedance in ohm
+let Zo = -v(out)[20]/Vin#branch[20]*0.001
+let real = RE(Zo)
+let imag = IM(Zo)
+let modulus = abs(Zo)
+let phase = phase(Zo)*180/PI
+print Zo modulus phase
 
-*need a different setup to measure output impedance
+echo "outimp_TAB"
+echo "Output impedance = $&real + j*$&imag kOhm"
+echo "Output impedance modulus = $&modulus kOhm"
+echo "Output impedance phase = $&phase degrees"
+echo "outimp_END"
+
+quit
 
 .endc 
