@@ -12,10 +12,10 @@ all: ngspice1.log ngspice2.log
 	$(foreach i, $(NGSFIGPS2), ps2pdf $i;)
 
 
-ngspice1.log: t4.net
+ngspice1.log: t5.net
 	ngspice -b $< -o $@                          
 
-ngspice2.log: t4_out_imp.net
+ngspice2.log: t5_out_imp.net
 	ngspice -b $< -o $@                          
 
 clean:
